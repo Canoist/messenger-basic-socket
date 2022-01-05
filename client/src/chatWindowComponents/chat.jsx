@@ -1,15 +1,8 @@
-import React, { useState } from "react";
-import ConnectUserWindow from "../connectUserWindow";
+import React from "react";
 import ChatWrapper from "./chatWrapper";
 import InputMessage from "./inputMessage";
 
-const Chat = ({ dialog, connected, username, socket, ...rest }) => {
-  const [value, setValue] = useState("");
-
-  function handleValue(newValue) {
-    setValue(newValue);
-  }
-
+const Chat = ({ dialog, connected, username, socket, value, resetValue, ...rest }) => {
   const sendMessage = async () => {
     const message = {
       username,
@@ -18,19 +11,15 @@ const Chat = ({ dialog, connected, username, socket, ...rest }) => {
       event: "message"
     };
     socket.current.send(JSON.stringify(message));
-    setValue("");
+    resetValue("");
   };
-
-  if (!connected) {
-    return <ConnectUserWindow value={username} {...rest} />;
-  }
 
   return (
     connected && (
       <div className="chat px-2">
         <nav>{dialog.name}</nav>
         <ChatWrapper {...rest} username={username} />
-        <InputMessage value={value} setValue={handleValue} sendMessage={sendMessage} />
+        <InputMessage value={value} setValue={resetValue} sendMessage={sendMessage} />
       </div>
     )
   );

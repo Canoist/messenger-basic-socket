@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import ConnectUserWindow from "./connectUserWindow";
 import Chat from "./chatWindowComponents/chat";
 import DialogList from "./dialogsComponents/dialogList";
 
@@ -7,6 +8,11 @@ const Messenger = () => {
   const [connected, setConnected] = useState(false);
   const [username, setUsername] = useState("");
   const [messages, setMessages] = useState([]);
+  const [value, setValue] = useState("");
+
+  const handleValue = (newValue) => {
+    setValue(newValue);
+  };
 
   const dialogsBase = [
     {
@@ -31,11 +37,11 @@ const Messenger = () => {
 
   const [dialogCheck, setDialogCheck] = useState(dialogs[0]);
 
-  function handleSetUsername(userName) {
+  const handleSetUsername = (userName) => {
     setUsername(userName);
-  }
+  };
 
-  function handleConnect() {
+  const handleConnect = () => {
     socket.current = new WebSocket("ws://localhost:8000");
     socket.current.onopen = () => {
       setConnected(true);
@@ -55,21 +61,31 @@ const Messenger = () => {
     socket.current.onerror = () => {
       console.log("Socket error");
     };
+  };
+
+  if (!connected) {
+    return (
+      <ConnectUserWindow value={username} connect={handleConnect} setUserName={handleSetUsername} />
+    );
   }
 
   return (
-    <div className="messenger">
-      <DialogList dialogs={dialogs} toggleDialog={handleDialogChange} />
-      <Chat
-        dialog={dialogCheck}
-        connect={handleConnect}
-        setUserName={handleSetUsername}
-        messages={messages}
-        connected={connected}
-        username={username}
-        socket={socket}
-      />
-    </div>
+    connected && (
+      <div className="messenger">
+        <DialogList dialogs={dialogs} toggleDialog={handleDialogChange} />
+        <Chat
+          dialog={dialogCheck}
+          connect={handleConnect}
+          setUserName={handleSetUsername}
+          messages={messages}
+          connected={connected}
+          username={username}
+          socket={socket}
+          value={value}
+          resetValue={handleValue}
+        />
+      </div>
+    )
   );
 };
 export default Messenger;
