@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-#### Server side
+** Server side **
 
 In the directory ./server, you can run:
 
@@ -12,7 +12,7 @@ In the directory ./server, you can run:
 
 Runs the server side of the app.
 
-#### Client side
+** Client side **
 
 In the directory ./client, you can run:
 
