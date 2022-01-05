@@ -1,6 +1,13 @@
 import React from "react";
 
 const ConnectUserWindow = ({ value, connect, setUserName }) => {
+  const connectWithEnter = (event) => {
+    if (event.code === "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
+      connect();
+    }
+  };
   return (
     <div className="wrapper">
       <div className="input-group mb-3">
@@ -10,6 +17,7 @@ const ConnectUserWindow = ({ value, connect, setUserName }) => {
           type="text"
           className="form-control"
           placeholder="Your's username"
+          onKeyDown={connectWithEnter}
         />
         <button
           onClick={connect}
