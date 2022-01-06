@@ -9,7 +9,7 @@ const ConnectUserWindow = ({ value, connect, setUserName }) => {
     }
   };
   return (
-    <div className="wrapper">
+    <div className="username-enter">
       <div className="input-group mb-3">
         <input
           value={value}

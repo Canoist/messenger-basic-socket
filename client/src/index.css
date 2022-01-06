@@ -10,6 +10,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+.username-enter {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 8;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.username-enter .input-group {
+  width: 50%;
+  margin: 0 auto;
+}
 .messenger {
   display: flex;
   width: 100vw;
@@ -18,7 +31,7 @@ code {
 .dialog-list {
   background-color: rgb(57, 145, 57);
   min-width: 20vw;
-  height: 98vh;
+  height: 100vh;
   align-items: center;
 }
 .dialog-list-item {
@@ -32,7 +45,7 @@ code {
   background-color: rgb(172, 58, 58);
   border: solid 2px goldenrod;
   flex-grow: 1;
-  height: 98vh;
+  height: 100vh;
 }
 .chat nav {
   background-color: rgba(208, 255, 0, 0.705);
@@ -41,12 +54,12 @@ code {
   padding: 5px 15px;
   margin: 5px 0;
   display: inline-block;
-  height: 7%;
+  height: 7vh;
 }
 .chat-wrapper {
   width: 100%;
   padding-top: 40px;
-  height: 80%;
+  height: 78vh;
   overflow-y: scroll;
 }
 .chat__wrapper__user-connect {
@@ -69,21 +82,10 @@ code {
   user-select: text;
 }
 .footer {
-  height: 13%;
-  width: 95%;
-}
-.wrapper {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 75vw;
   z-index: 8;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-}
-.wrapper .input-group {
-  width: 50%;
-  margin: 0 auto;
+  bottom: 7px;
 }
 .right-side {
   text-align: end;
